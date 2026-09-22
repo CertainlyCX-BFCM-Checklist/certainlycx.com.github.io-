@@ -149,6 +149,38 @@
     color:var(--ink);
   }
 
+  /* ---------- DOWNLOAD RESULTS ---------- */
+  .download-bar{
+    max-width:820px;
+    margin:44px auto 0;
+    padding:0 40px;
+    display:flex;
+    justify-content:center;
+  }
+  .download-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:var(--navy);
+    color:#fff;
+    border:none;
+    border-radius:10px;
+    padding:15px 28px;
+    font-family:'Poppins',sans-serif;
+    font-weight:700;
+    font-size:15px;
+    cursor:pointer;
+    transition:background .15s ease;
+  }
+  .download-btn:hover{background:var(--navy-soft);}
+  .download-btn svg{width:18px;height:18px;flex-shrink:0;}
+
+  @media print{
+    .download-bar{display:none;}
+    .cta{display:none;}
+    body{background:#fff;}
+  }
+
   /* ---------- QUOTE / CLOSING ---------- */
   .closing{
     background:var(--navy);
@@ -540,6 +572,13 @@
       </div>
     </div>
 
+  </div>
+
+  <div class="download-bar">
+    <button class="download-btn" onclick="window.print()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download Your Results
+    </button>
   </div>
 
   <div class="closing">
