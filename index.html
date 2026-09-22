@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>The BFCM CX Checklist | CertainlyCX</title>
+<title>BFCM Self-Check | CertainlyCX</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Ten things to get right before your busiest week of the year — from CertainlyCX.">
-<meta property="og:title" content="The BFCM CX Checklist | CertainlyCX">
-<meta property="og:description" content="Ten things to get right before your busiest week of the year — people, queues, promos, AI, and the after-hours plan that keeps a bad night from becoming a bad quarter.">
+<meta property="og:title" content="BFCM Self-Check | CertainlyCX">
+<meta property="og:description" content="11 quick questions every CX leader should be able to answer before Black Friday hits.">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="The BFCM CX Checklist | CertainlyCX">
+<meta name="twitter:title" content="BFCM Self-Check | CertainlyCX">
 <meta name="twitter:description" content="Ten things to get right before your busiest week of the year — from CertainlyCX.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23E2624F'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-weight='800' font-size='30' fill='%2314161F' text-anchor='middle'%3EC%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,7 +35,6 @@
     font-family:'Inter',sans-serif;
     -webkit-font-smoothing:antialiased;
   }
-  .wrap{max-width:900px;margin:0 auto;}
 
   /* ---------- HERO ---------- */
   .hero{
@@ -78,75 +77,6 @@
     max-width:560px;
     margin:0;
     font-weight:500;
-  }
-
-  /* ---------- SECTION HEADERS ---------- */
-  .section{padding:0 40px;margin:0 auto;max-width:900px;}
-  .section-head{
-    display:flex;
-    align-items:baseline;
-    gap:14px;
-    margin:52px 0 20px;
-  }
-  .section-num{
-    font-family:'Poppins',sans-serif;
-    font-weight:800;
-    font-size:15px;
-    color:#fff;
-    background:var(--navy);
-    padding:5px 12px;
-    border-radius:20px;
-    flex-shrink:0;
-  }
-  .section-title{
-    font-family:'Poppins',sans-serif;
-    font-weight:700;
-    font-size:21px;
-    color:var(--navy);
-    margin:0;
-  }
-
-  .card{
-    background:var(--card);
-    border:1px solid var(--line);
-    border-radius:14px;
-    padding:6px 8px;
-    box-shadow:0 1px 0 var(--line);
-  }
-  ul.check{list-style:none;margin:0;padding:0;}
-  ul.check li{
-    display:flex;
-    align-items:flex-start;
-    gap:14px;
-    padding:13px 18px;
-    border-bottom:1px solid var(--line);
-  }
-  ul.check li:last-child{border-bottom:none;}
-  .box{
-    flex-shrink:0;
-    width:20px;height:20px;
-    margin-top:2px;
-    border-radius:5px;
-    border:2px solid var(--coral);
-    cursor:pointer;
-    appearance:none;
-    -webkit-appearance:none;
-    background:#fff;
-    transition:background .15s ease, border-color .15s ease;
-  }
-  .box:checked{
-    background:var(--coral);
-    border-color:var(--coral);
-  }
-  .box:checked + span{
-    color:var(--ink-soft);
-    text-decoration:line-through;
-    text-decoration-color:var(--coral-tint);
-  }
-  ul.check li span{
-    font-size:15.5px;
-    line-height:1.5;
-    color:var(--ink);
   }
 
   /* ---------- DOWNLOAD RESULTS ---------- */
@@ -386,12 +316,98 @@
   @media (max-width:640px){
     .hero{padding:44px 22px 40px;}
     h1.hero-title{font-size:30px;}
-    .section{padding:0 22px;}
     .closing,.cta,.contact{padding-left:22px;padding-right:22px;}
     .question-text{font-size:19px;}
     h2.cta-title{font-size:24px;}
     .contact-inner{flex-direction:column;}
     .logo-block{text-align:left;}
+  }
+  /* ---------- QUICK SELF-CHECK ---------- */
+  .quickcheck{
+    padding:52px 40px 8px;
+    max-width:900px;
+    margin:0 auto;
+  }
+  .qc-kicker{
+    font-family:'Poppins',sans-serif;
+    font-weight:700;
+    font-size:13px;
+    letter-spacing:.04em;
+    color:var(--coral-dark);
+    margin:0 0 10px;
+  }
+  h2.qc-title{
+    font-family:'Poppins',sans-serif;
+    font-weight:800;
+    font-size:28px;
+    color:var(--navy);
+    margin:0 0 10px;
+    line-height:1.2;
+  }
+  .qc-sub{
+    font-size:15px;
+    color:var(--ink-soft);
+    max-width:540px;
+    margin:0 0 28px;
+    line-height:1.6;
+  }
+  .qc-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    box-shadow:0 4px 16px rgba(20,22,31,.05);
+  }
+  .qc-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    padding:18px 22px;
+    border-bottom:1px solid var(--line);
+  }
+  .qc-row:last-child{border-bottom:none;}
+  .qc-q{
+    font-size:15px;
+    color:var(--ink);
+    line-height:1.45;
+  }
+  .qc-toggle{
+    display:flex;
+    flex-shrink:0;
+    border:1.5px solid var(--line);
+    border-radius:9px;
+    overflow:hidden;
+  }
+  .qc-btn{
+    font-family:'Poppins',sans-serif;
+    font-weight:700;
+    font-size:13px;
+    padding:9px 18px;
+    background:#fff;
+    color:var(--ink-soft);
+    border:none;
+    cursor:pointer;
+    transition:background .15s ease, color .15s ease;
+  }
+  .qc-btn + .qc-btn{border-left:1.5px solid var(--line);}
+  .qc-btn.active-yes{background:var(--coral);color:#fff;}
+  .qc-btn.active-no{background:var(--navy);color:#fff;}
+  .qc-download-wrap{
+    display:flex;
+    justify-content:center;
+    margin:30px 0 8px;
+  }
+  .qc-note{
+    text-align:center;
+    font-size:13px;
+    color:var(--ink-soft);
+    margin:0 0 16px;
+  }
+
+  @media (max-width:640px){
+    .quickcheck{padding:40px 22px 4px;}
+    .qc-row{flex-direction:column;align-items:flex-start;gap:12px;}
+    .qc-toggle{align-self:flex-start;}
   }
 </style>
 </head>
@@ -403,180 +419,67 @@
         <span class="dot"></span>
         <span class="hero-kicker">CERTAINLYCX</span>
       </div>
-      <h1 class="hero-title">The BFCM CX Checklist</h1>
-      <p class="hero-sub">Ten things to get right before your busiest week of the year — people, queues, promos, AI, and the after-hours plan that keeps a bad night from becoming a bad quarter.</p>
+      <h1 class="hero-title">Are You BFCM-Ready?</h1>
+      <p class="hero-sub">11 quick questions every CX leader should be able to answer before Black Friday hits. Answer honestly, download your results.</p>
     </div>
   </div>
 
-  <div class="wrap">
-
-    <div class="section">
-      <div class="section-head">
-        <span class="section-num">01</span>
-        <h2 class="section-title">People &amp; Coverage</h2>
+  <div class="quickcheck">
+    <p class="qc-kicker">QUICK SELF-CHECK</p>
+    <h2 class="qc-title">Where do you stand right now?</h2>
+    <p class="qc-sub">Takes a few seconds to know. Take the self check test now.</p>
+    <div class="qc-card" id="qcCard">
+      <div class="qc-row" data-topic="People &amp; Coverage">
+        <span class="qc-q">Can your team handle a 2–3x jump in ticket volume without falling behind?</span>
+        <div class="qc-toggle"><button class="qc-btn" data-val="yes" onclick="qcSet(this)">Yes</button><button class="qc-btn" data-val="no" onclick="qcSet(this)">No</button></div>
       </div>
-      <div class="card">
-        <ul class="check">
-          <li><input type="checkbox" class="box"><span>Look at last year's BFCM ticket volume and compare it with what you're expecting this year.</span></li>
-          <li><input type="checkbox" class="box"><span>Figure out when your busiest hours usually are and check whether your current team can cover them.</span></li>
-          <li><input type="checkbox" class="box"><span>Check your evenings and weekends. Who is handling customers when your normal team is offline?</span></li>
-          <li><input type="checkbox" class="box"><span>Decide what you will do if ticket volume is 2x or 3x higher than normal.</span></li>
-          <li><input type="checkbox" class="box"><span>Have a backup plan for sick days, call-outs, or people who can't make their shifts.</span></li>
-        </ul>
+      <div class="qc-row" data-topic="Queue &amp; Workflow">
+        <span class="qc-q">Do your SLAs and escalation paths hold up under peak-season pressure?</span>
+        <div class="qc-toggle"><button class="qc-btn" data-val="yes" onclick="qcSet(this)">Yes</button><button class="qc-btn" data-val="no" onclick="qcSet(this)">No</button></div>
       </div>
-    </div>
-
-    <div class="section">
-      <div class="section-head">
-        <span class="section-num">02</span>
-        <h2 class="section-title">Queue &amp; Workflow</h2>
+      <div class="qc-row" data-topic="Promos, Orders &amp; Shipping">
+        <span class="qc-q">Does support always have accurate, current info on promos, stock, and shipping cutoffs?</span>
+        <div class="qc-toggle"><button class="qc-btn" data-val="yes" onclick="qcSet(this)">Yes</button><button class="qc-btn" data-val="no" onclick="qcSet(this)">No</button></div>
       </div>
-      <div class="card">
-        <ul class="check">
-          <li><input type="checkbox" class="box"><span>Look at the types of tickets you usually get during BFCM and decide which ones need a fast response.</span></li>
-          <li><input type="checkbox" class="box"><span>Check that agents know when to handle something themselves and when to escalate it.</span></li>
-          <li><input type="checkbox" class="box"><span>Make sure two or three agents aren't working on the same customer issue.</span></li>
-          <li><input type="checkbox" class="box"><span>Review your current SLAs and decide whether they still make sense for BFCM.</span></li>
-          <li><input type="checkbox" class="box"><span>Decide what happens when the queue starts getting out of control.</span></li>
-        </ul>
+      <div class="qc-row" data-topic="Knowledge &amp; Macros">
+        <span class="qc-q">Are your macros and help center current and easy for agents to find?</span>
+        <div class="qc-toggle"><button class="qc-btn" data-val="yes" onclick="qcSet(this)">Yes</button><button class="qc-btn" data-val="no" onclick="qcSet(this)">No</button></div>
       </div>
-    </div>
-
-    <div class="section">
-      <div class="section-head">
-        <span class="section-num">03</span>
-        <h2 class="section-title">Promos, Orders &amp; Shipping</h2>
+      <div class="qc-row" data-topic="After-Hours">
+        <span class="qc-q">Is after-hours and weekend coverage handled, not just your normal business hours?</span>
+        <div class="qc-toggle"><button class="qc-btn" data-val="yes" onclick="qcSet(this)">Yes</button><button class="qc-btn" data-val="no" onclick="qcSet(this)">No</button></div>
       </div>
-      <div class="card">
-        <ul class="check">
-          <li><input type="checkbox" class="box"><span>Check that support has the latest information on every BFCM promotion and discount.</span></li>
-          <li><input type="checkbox" class="box"><span>Check what products may run out of stock and make sure support knows.</span></li>
-          <li><input type="checkbox" class="box"><span>Check your shipping cutoffs and expected delivery times.</span></li>
-          <li><input type="checkbox" class="box"><span>Make sure agents know what to tell customers when an order is delayed or stuck with a carrier.</span></li>
-          <li><input type="checkbox" class="box"><span>Review your return, refund, exchange, and cancellation policies before the rush.</span></li>
-        </ul>
+      <div class="qc-row" data-topic="AI &amp; Automation">
+        <span class="qc-q">Does your AI/automation give accurate answers on order, shipping, and return questions?</span>
+        <div class="qc-toggle"><button class="qc-btn" data-val="yes" onclick="qcSet(this)">Yes</button><button class="qc-btn" data-val="no" onclick="qcSet(this)">No</button></div>
       </div>
-    </div>
-
-    <div class="section">
-      <div class="section-head">
-        <span class="section-num">04</span>
-        <h2 class="section-title">Knowledge &amp; Macros</h2>
+      <div class="qc-row" data-topic="Customer Intelligence">
+        <span class="qc-q">Do you know which conversations this peak season are hinting at churn or mentioning a competitor?</span>
+        <div class="qc-toggle"><button class="qc-btn" data-val="yes" onclick="qcSet(this)">Yes</button><button class="qc-btn" data-val="no" onclick="qcSet(this)">No</button></div>
       </div>
-      <div class="card">
-        <ul class="check">
-          <li><input type="checkbox" class="box"><span>Look at the questions customers asked most during last year's BFCM.</span></li>
-          <li><input type="checkbox" class="box"><span>Turn the most common questions into simple macros or saved replies.</span></li>
-          <li><input type="checkbox" class="box"><span>Check that your help center has the latest information.</span></li>
-          <li><input type="checkbox" class="box"><span>Make sure agents can find important answers without asking a manager every time.</span></li>
-          <li><input type="checkbox" class="box"><span>Test your macros before the rush instead of finding out they're wrong when the queue is full.</span></li>
-        </ul>
+      <div class="qc-row" data-topic="Agent CoPilot">
+        <span class="qc-q">Can new hires find the right answer fast, without relying on a senior agent to bail them out?</span>
+        <div class="qc-toggle"><button class="qc-btn" data-val="yes" onclick="qcSet(this)">Yes</button><button class="qc-btn" data-val="no" onclick="qcSet(this)">No</button></div>
+      </div>
+      <div class="qc-row" data-topic="Take Care of the Team">
+        <span class="qc-q">Do agents have real backup and somewhere to flag problems when it gets busy?</span>
+        <div class="qc-toggle"><button class="qc-btn" data-val="yes" onclick="qcSet(this)">Yes</button><button class="qc-btn" data-val="no" onclick="qcSet(this)">No</button></div>
+      </div>
+      <div class="qc-row" data-topic="When Something Goes Wrong">
+        <span class="qc-q">Is it clear who owns a major issue the moment something breaks?</span>
+        <div class="qc-toggle"><button class="qc-btn" data-val="yes" onclick="qcSet(this)">Yes</button><button class="qc-btn" data-val="no" onclick="qcSet(this)">No</button></div>
+      </div>
+      <div class="qc-row" data-topic="After BFCM">
+        <span class="qc-q">Do you have a system for reviewing what worked and what didn't, every year?</span>
+        <div class="qc-toggle"><button class="qc-btn" data-val="yes" onclick="qcSet(this)">Yes</button><button class="qc-btn" data-val="no" onclick="qcSet(this)">No</button></div>
       </div>
     </div>
-
-    <div class="section">
-      <div class="section-head">
-        <span class="section-num">05</span>
-        <h2 class="section-title">After-Hours</h2>
-      </div>
-      <div class="card">
-        <ul class="check">
-          <li><input type="checkbox" class="box"><span>Look at what happens to tickets after your normal team logs off.</span></li>
-          <li><input type="checkbox" class="box"><span>Figure out who handles overnight tickets and who is covering weekends.</span></li>
-          <li><input type="checkbox" class="box"><span>Decide which issues can wait until the next business day and which ones need someone immediately.</span></li>
-          <li><input type="checkbox" class="box"><span>Make sure there is a clear handoff between shifts.</span></li>
-          <li><input type="checkbox" class="box"><span>Check what happens to an urgent customer issue that comes in at 10 p.m. on Black Friday.</span></li>
-        </ul>
-      </div>
+    <div class="qc-download-wrap">
+      <button class="download-btn" onclick="downloadQuickResults()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Your Results
+      </button>
     </div>
-
-    <div class="section">
-      <div class="section-head">
-        <span class="section-num">06</span>
-        <h2 class="section-title">AI &amp; Automation</h2>
-      </div>
-      <div class="card">
-        <ul class="check">
-          <li><input type="checkbox" class="box"><span>Look at what questions your AI or automation is currently handling.</span></li>
-          <li><input type="checkbox" class="box"><span>Check that order tracking, shipping, return, and other automated answers are accurate.</span></li>
-          <li><input type="checkbox" class="box"><span>Test your automation using real BFCM-type questions.</span></li>
-          <li><input type="checkbox" class="box"><span>Figure out which questions should always go to a person.</span></li>
-          <li><input type="checkbox" class="box"><span>Make sure customers can reach a person when automation can't solve the problem.</span></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="section">
-      <div class="section-head">
-        <span class="section-num">07</span>
-        <h2 class="section-title">Watch the Queue</h2>
-      </div>
-      <div class="card">
-        <ul class="check">
-          <li><input type="checkbox" class="box"><span>Watch which types of tickets start increasing once BFCM begins.</span></li>
-          <li><input type="checkbox" class="box"><span>Look for sudden spikes in order-status, shipping, return, refund, or product questions.</span></li>
-          <li><input type="checkbox" class="box"><span>Check whether one product, promotion, or shipping issue is creating a large number of tickets.</span></li>
-          <li><input type="checkbox" class="box"><span>Watch response times and backlog as volume changes.</span></li>
-          <li><input type="checkbox" class="box"><span>If the same problem keeps coming up, figure out whether you can fix the problem instead of answering the same question over and over.</span></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="section">
-      <div class="section-head">
-        <span class="section-num">08</span>
-        <h2 class="section-title">Take Care of the Team</h2>
-      </div>
-      <div class="card">
-        <ul class="check">
-          <li><input type="checkbox" class="box"><span>Check whether agents have somewhere to raise problems they keep seeing.</span></li>
-          <li><input type="checkbox" class="box"><span>Watch workload, not just ticket numbers.</span></li>
-          <li><input type="checkbox" class="box"><span>Make sure managers have backup when things get busy.</span></li>
-          <li><input type="checkbox" class="box"><span>Have a plan for what happens when someone calls out during the busiest period.</span></li>
-          <li><input type="checkbox" class="box"><span>Check in with the team before the rush, not only when people are already overwhelmed.</span></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="section">
-      <div class="section-head">
-        <span class="section-num">09</span>
-        <h2 class="section-title">When Something Goes Wrong</h2>
-      </div>
-      <div class="card">
-        <ul class="check">
-          <li><input type="checkbox" class="box"><span>Figure out who owns major customer problems.</span></li>
-          <li><input type="checkbox" class="box"><span>Decide who handles shipping, inventory, website, payment, and order issues.</span></li>
-          <li><input type="checkbox" class="box"><span>Make sure agents know who to contact when they can't solve something.</span></li>
-          <li><input type="checkbox" class="box"><span>Decide what agents can offer customers without waiting for approval.</span></li>
-          <li><input type="checkbox" class="box"><span>Make sure major issues don't get lost between support and other teams.</span></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="section">
-      <div class="section-head">
-        <span class="section-num">10</span>
-        <h2 class="section-title">After BFCM</h2>
-      </div>
-      <div class="card">
-        <ul class="check">
-          <li><input type="checkbox" class="box"><span>Look at which questions created the most tickets.</span></li>
-          <li><input type="checkbox" class="box"><span>Look at where customers waited the longest.</span></li>
-          <li><input type="checkbox" class="box"><span>Look at which issues created the most work for agents.</span></li>
-          <li><input type="checkbox" class="box"><span>Check what AI and automation handled well and where it struggled.</span></li>
-          <li><input type="checkbox" class="box"><span>Write down the problems you don't want to repeat next year.</span></li>
-        </ul>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="download-bar" id="downloadBar">
-    <button class="download-btn" onclick="showResults()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      Download Your Results
-    </button>
   </div>
 
   <div class="closing">
@@ -595,9 +498,9 @@
 
   <div class="cta">
     <div class="cta-inner">
-      <p class="cta-kicker">READY TO SCALE?</p>
-      <h2 class="cta-title">Build your seasonal support plan.</h2>
-      <p class="cta-sub">Want a second set of eyes on your support setup before BFCM? Happy to take a quick look at your ticketing platform and flag anything worth addressing before peak.</p>
+      <p class="cta-kicker">READY FOR PEAK DEMAND?</p>
+      <h2 class="cta-title">You can start by getting a free ticketing assessment..</h2>
+      <p class="cta-sub">We'll take a quick look at your ticketing platform and flag anything worth addressing before peak.</p>
       <div class="booking-card">
         <form id="bookingForm">
           <div class="form-row">
@@ -612,7 +515,7 @@
             <label for="company">Company</label>
             <input type="text" id="company" name="company" placeholder="Company name" required>
           </div>
-          <button type="submit" class="form-submit">Book Your Free Assessment</button>
+          <button type="submit" class="form-submit">Book Your Assessment</button>
         </form>
       </div>
     </div>
@@ -648,21 +551,35 @@
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script>
-    function showResults(){
-      var allBoxes = document.querySelectorAll('.section input[type="checkbox"]');
-      var checkedBoxes = document.querySelectorAll('.section input[type="checkbox"]:checked');
-      var items = [];
-      checkedBoxes.forEach(function(box){
-        var label = box.parentElement.querySelector('span');
-        if(label) items.push(label.textContent);
+    function qcSet(btn){
+      var toggle = btn.parentElement;
+      toggle.querySelectorAll('.qc-btn').forEach(function(b){
+        b.classList.remove('active-yes','active-no');
+      });
+      btn.classList.add(btn.dataset.val === 'yes' ? 'active-yes' : 'active-no');
+    }
+
+    function downloadQuickResults(){
+      var rows = document.querySelectorAll('#qcCard .qc-row');
+      var yesTopics = [];
+      var answered = 0;
+
+      rows.forEach(function(row){
+        var active = row.querySelector('.qc-btn.active-yes, .qc-btn.active-no');
+        if(active){
+          answered++;
+          if(active.classList.contains('active-yes')){
+            yesTopics.push(row.getAttribute('data-topic'));
+          }
+        }
       });
 
-      var pct = allBoxes.length ? Math.round((checkedBoxes.length / allBoxes.length) * 100) : 0;
-
-      if(items.length === 0){
-        alert('Check off a few items first, then click Download Your Results.');
+      if(answered === 0){
+        alert('Answer a few questions first, then click Download Your Results.');
         return;
       }
+
+      var pct = Math.round((yesTopics.length / rows.length) * 100);
 
       var jsPDFLib = window.jspdf.jsPDF;
       var doc = new jsPDFLib();
@@ -687,15 +604,20 @@
       doc.setFont('helvetica', 'normal');
       doc.setFontSize(11);
 
-      items.forEach(function(item){
-        var lines = doc.splitTextToSize('• ' + item, pageWidth - margin * 2);
-        if(y + lines.length * 6 > 280){
-          doc.addPage();
-          y = 24;
-        }
-        doc.text(lines, margin, y);
-        y += lines.length * 6 + 4;
-      });
+      if(yesTopics.length === 0){
+        doc.text('No areas marked ready yet.', margin, y);
+      } else {
+        yesTopics.forEach(function(topic){
+          var clean = topic.replace(/&amp;/g, '&');
+          var lines = doc.splitTextToSize('• ' + clean, pageWidth - margin * 2);
+          if(y + lines.length * 6 > 280){
+            doc.addPage();
+            y = 24;
+          }
+          doc.text(lines, margin, y);
+          y += lines.length * 6 + 4;
+        });
+      }
 
       doc.save('BFCM-Results.pdf');
     }
