@@ -175,10 +175,122 @@
   .download-btn:hover{background:var(--navy-soft);}
   .download-btn svg{width:18px;height:18px;flex-shrink:0;}
 
+  /* ---------- RESULTS SUMMARY ---------- */
+  .results-summary{
+    display:none;
+    max-width:820px;
+    margin:44px auto 0;
+    padding:0 40px;
+  }
+  .results-summary.active{display:block;}
+  .results-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:36px 34px;
+    box-shadow:0 4px 20px rgba(20,22,31,.06);
+  }
+  .results-title{
+    font-family:'Poppins',sans-serif;
+    font-weight:800;
+    font-size:26px;
+    color:var(--navy);
+    margin:0 0 6px;
+  }
+  .results-sub{
+    font-size:14.5px;
+    color:var(--ink-soft);
+    margin:0 0 8px;
+  }
+  .results-score{
+    font-family:'Poppins',sans-serif;
+    font-weight:700;
+    font-size:15px;
+    color:var(--coral-dark);
+    margin:0 0 26px;
+  }
+  .result-row{
+    border-top:1px solid var(--line);
+    padding:18px 0;
+  }
+  .result-row:last-of-type{padding-bottom:4px;}
+  .result-row-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    margin-bottom:8px;
+  }
+  .result-row-title{
+    font-family:'Poppins',sans-serif;
+    font-weight:700;
+    font-size:15.5px;
+    color:var(--navy);
+  }
+  .result-badge{
+    font-family:'Poppins',sans-serif;
+    font-weight:700;
+    font-size:11px;
+    letter-spacing:.02em;
+    padding:4px 11px;
+    border-radius:20px;
+    white-space:nowrap;
+  }
+  .badge-covered{background:#E3F3EA;color:#1E7A46;}
+  .badge-partial{background:#FDF1DE;color:#B26A0E;}
+  .badge-attention{background:#FBE4E0;color:var(--coral-dark);}
+  .result-gaps{margin:0;padding:0;list-style:none;}
+  .result-gaps li{
+    font-size:14px;
+    line-height:1.55;
+    color:var(--ink-soft);
+    padding:5px 0 5px 20px;
+    position:relative;
+  }
+  .result-gaps li::before{
+    content:"—";
+    position:absolute;
+    left:0;
+    color:var(--coral);
+  }
+  .result-clear{
+    font-size:14px;
+    color:#1E7A46;
+    margin:0;
+  }
+  .results-cta{
+    margin-top:30px;
+    padding-top:26px;
+    border-top:2px solid var(--navy);
+    text-align:center;
+  }
+  .results-cta p{
+    font-size:15px;
+    color:var(--ink-soft);
+    margin:0 0 16px;
+  }
+  .results-cta a{
+    display:inline-block;
+    background:var(--coral);
+    color:#fff;
+    text-decoration:none;
+    font-family:'Poppins',sans-serif;
+    font-weight:700;
+    font-size:14.5px;
+    padding:13px 26px;
+    border-radius:9px;
+  }
+
   @media print{
     .download-bar{display:none;}
     .cta{display:none;}
     body{background:#fff;}
+    body.print-results-mode .hero,
+    body.print-results-mode .section,
+    body.print-results-mode .closing,
+    body.print-results-mode .contact{display:none !important;}
+    body.print-results-mode .results-summary{display:block !important;}
+    .results-cta{display:none;}
   }
 
   /* ---------- QUOTE / CLOSING ---------- */
@@ -574,11 +686,30 @@
 
   </div>
 
-  <div class="download-bar">
-    <button class="download-btn" onclick="window.print()">
+  <div class="download-bar" id="downloadBar">
+    <button class="download-btn" onclick="showResults()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
       Download Your Results
     </button>
+  </div>
+
+  <div class="results-summary" id="resultsSummary">
+    <div class="results-card">
+      <h2 class="results-title">Here's Your BFCM Results</h2>
+      <p class="results-sub">Where you stand across the 10 areas that matter most this peak season.</p>
+      <p class="results-score" id="resultsScore"></p>
+      <div id="resultsBody"></div>
+      <div class="results-cta">
+        <p>Want help closing these gaps before BFCM hits?</p>
+        <a href="https://calendly.com/kevin-certainlycx/new-meeting" target="_blank" rel="noopener">Book Your Free Assessment</a>
+      </div>
+    </div>
+    <div class="download-bar" style="margin-top:20px;">
+      <button class="download-btn" onclick="printResults()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Save as PDF
+      </button>
+    </div>
   </div>
 
   <div class="closing">
@@ -648,6 +779,74 @@
       </div>
     </div>
   </div>
+  <script>
+    function showResults(){
+      var sections = document.querySelectorAll('.section');
+      var totalChecked = 0, totalBoxes = 0;
+      var bodyHtml = '';
+
+      sections.forEach(function(sec){
+        var titleEl = sec.querySelector('.section-title');
+        if(!titleEl) return;
+        var title = titleEl.textContent;
+        var boxes = sec.querySelectorAll('input[type="checkbox"]');
+        var checkedCount = 0;
+        var gaps = [];
+
+        boxes.forEach(function(box){
+          totalBoxes++;
+          if(box.checked){
+            checkedCount++;
+            totalChecked++;
+          } else {
+            var label = box.parentElement.querySelector('span');
+            if(label) gaps.push(label.textContent);
+          }
+        });
+
+        var pct = boxes.length ? checkedCount / boxes.length : 0;
+        var badgeClass = 'badge-attention', badgeText = 'Needs Attention';
+        if(pct === 1){ badgeClass = 'badge-covered'; badgeText = 'Covered'; }
+        else if(pct > 0){ badgeClass = 'badge-partial'; badgeText = 'Partially Ready'; }
+
+        var gapsHtml = '';
+        if(gaps.length === 0){
+          gapsHtml = '<p class="result-clear">Fully covered — nice work.</p>';
+        } else {
+          gapsHtml = '<ul class="result-gaps">' + gaps.map(function(g){
+            return '<li>' + g + '</li>';
+          }).join('') + '</ul>';
+        }
+
+        bodyHtml += '<div class="result-row">' +
+          '<div class="result-row-head">' +
+            '<span class="result-row-title">' + title + '</span>' +
+            '<span class="result-badge ' + badgeClass + '">' + badgeText + '</span>' +
+          '</div>' +
+          gapsHtml +
+        '</div>';
+      });
+
+      var overallPct = totalBoxes ? Math.round((totalChecked / totalBoxes) * 100) : 0;
+      document.getElementById('resultsScore').textContent =
+        totalChecked + ' of ' + totalBoxes + ' items checked — ' + overallPct + '% ready for BFCM.';
+      document.getElementById('resultsBody').innerHTML = bodyHtml;
+
+      document.getElementById('downloadBar').style.display = 'none';
+      var results = document.getElementById('resultsSummary');
+      results.classList.add('active');
+      results.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+
+    window.onafterprint = function(){
+      document.body.classList.remove('print-results-mode');
+    };
+
+    function printResults(){
+      document.body.classList.add('print-results-mode');
+      window.print();
+    }
+  </script>
 
 </body>
 </html>
