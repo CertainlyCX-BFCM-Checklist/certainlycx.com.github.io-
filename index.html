@@ -498,8 +498,8 @@
 
   <div class="cta">
     <div class="cta-inner">
-      <p class="cta-kicker">READY FOR PEAK DEMAND?</p>
-      <h2 class="cta-title">You can start by getting a free ticketing assessment..</h2>
+      <p class="cta-kicker">READY FOR PEAK?</p>
+      <h2 class="cta-title">Get a free ticketing assessment.</h2>
       <p class="cta-sub">We'll take a quick look at your ticketing platform and flag anything worth addressing before peak.</p>
       <div class="booking-card">
         <form id="bookingForm">
@@ -559,6 +559,126 @@
       btn.classList.add(btn.dataset.val === 'yes' ? 'active-yes' : 'active-no');
     }
 
+    function buildBFCMResultsPDF(pct, items){
+      var jsPDFLib = window.jspdf.jsPDF;
+      var doc = new jsPDFLib({ unit: 'pt', format: 'letter' });
+      var pageW = doc.internal.pageSize.getWidth();
+      var margin = 56;
+
+      var coral = [226, 98, 79];
+      var coralTint = [243, 182, 169];
+      var navy = [20, 22, 31];
+      var ink = [26, 27, 34];
+      var lightGray = [185, 186, 198];
+      var white = [255, 255, 255];
+
+      // ---- Header band ----
+      doc.setFillColor.apply(doc, coral);
+      doc.rect(0, 0, pageW, 96, 'F');
+
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(11);
+      doc.setTextColor.apply(doc, white);
+      doc.text('CERTAINLYCX', margin, 34);
+
+      doc.setFontSize(24);
+      doc.text("Here's Your BFCM Results", margin, 66);
+
+      // ---- Score line ----
+      var y = 132;
+      doc.setFontSize(16);
+      doc.setTextColor.apply(doc, ink);
+      doc.text('You are ' + pct + '% ready for BFCM.', margin, y);
+
+      // ---- Divider ----
+      y += 18;
+      doc.setDrawColor.apply(doc, coral);
+      doc.setLineWidth(1.2);
+      doc.line(margin, y, pageW - margin, y);
+
+      // ---- Checked items ----
+      y += 30;
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(12);
+      doc.setTextColor.apply(doc, ink);
+
+      if(items.length === 0){
+        doc.text('No areas marked ready yet.', margin, y);
+        y += 20;
+      } else {
+        items.forEach(function(item){
+          var lines = doc.splitTextToSize('•  ' + item, pageW - margin * 2);
+          doc.text(lines, margin, y);
+          y += lines.length * 16 + 8;
+        });
+      }
+
+      // ---- Navy footer block (fixed to bottom of page) ----
+      var pageH = doc.internal.pageSize.getHeight();
+      var footerH = 360;
+      var footerTop = pageH - footerH;
+      doc.setFillColor.apply(doc, navy);
+      doc.rect(0, footerTop, pageW, footerH, 'F');
+
+      var fy = footerTop + 48;
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(11);
+      doc.setTextColor.apply(doc, coralTint);
+      doc.text('READY FOR PEAK?', margin, fy);
+
+      fy += 26;
+      doc.setFontSize(19);
+      doc.setTextColor.apply(doc, white);
+      doc.text('Get a free ticketing assessment.', margin, fy);
+
+      fy += 22;
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(11);
+      doc.setTextColor.apply(doc, lightGray);
+      var descLines = doc.splitTextToSize(
+        "We'll take a quick look at your ticketing platform and flag anything worth addressing before peak.",
+        pageW - margin * 2 - 8
+      );
+      doc.text(descLines, margin, fy);
+      fy += descLines.length * 15 + 22;
+
+      // ---- White form card ----
+      var cardTop = fy;
+      var cardH = 168;
+      doc.setFillColor.apply(doc, white);
+      doc.roundedRect(margin, cardTop, pageW - margin * 2, cardH, 6, 6, 'F');
+
+      var fieldY = cardTop + 26;
+      ['NAME', 'EMAIL', 'COMPANY'].forEach(function(label){
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(9);
+        doc.setTextColor.apply(doc, ink);
+        doc.text(label, margin + 20, fieldY);
+        doc.setDrawColor.apply(doc, lightGray);
+        doc.setLineWidth(0.8);
+        doc.line(margin + 20, fieldY + 12, pageW - margin - 20, fieldY + 12);
+        fieldY += 34;
+      });
+
+      var btnY = fieldY + 4;
+      var btnW = 190, btnH = 30;
+      doc.setFillColor.apply(doc, coral);
+      doc.roundedRect(margin + 20, btnY, btnW, btnH, 6, 6, 'F');
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(11);
+      doc.setTextColor.apply(doc, white);
+      doc.text('Book Your Assessment', margin + 20 + btnW / 2, btnY + btnH / 2 + 4, { align: 'center' });
+      doc.link(margin + 20, btnY, btnW, btnH, { url: 'https://calendly.com/kevin-certainlycx/new-meeting' });
+
+      // ---- Contact line ----
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(9);
+      doc.setTextColor.apply(doc, lightGray);
+      doc.text('380-235-3644   |   solutions@certainlycx.com   |   certainlycx.com', margin, cardTop + cardH + 26);
+
+      return doc;
+    }
+
     function downloadQuickResults(){
       var rows = document.querySelectorAll('#qcCard .qc-row');
       var yesTopics = [];
@@ -569,7 +689,7 @@
         if(active){
           answered++;
           if(active.classList.contains('active-yes')){
-            yesTopics.push(row.getAttribute('data-topic'));
+            yesTopics.push(row.getAttribute('data-topic').replace(/&amp;/g, '&'));
           }
         }
       });
@@ -581,45 +701,13 @@
 
       var pct = Math.round((yesTopics.length / rows.length) * 100);
 
-      var jsPDFLib = window.jspdf.jsPDF;
-      var doc = new jsPDFLib();
-      var pageWidth = doc.internal.pageSize.getWidth();
-      var margin = 20;
-      var y = 28;
-
-      doc.setFont('helvetica', 'bold');
-      doc.setFontSize(20);
-      doc.text("Here's Your BFCM Results", margin, y);
-
-      y += 12;
-      doc.setFontSize(13);
-      doc.text('You are ' + pct + '% ready for BFCM.', margin, y);
-
-      y += 14;
-      doc.setDrawColor(226, 98, 79);
-      doc.setLineWidth(0.5);
-      doc.line(margin, y, pageWidth - margin, y);
-
-      y += 10;
-      doc.setFont('helvetica', 'normal');
-      doc.setFontSize(11);
-
-      if(yesTopics.length === 0){
-        doc.text('No areas marked ready yet.', margin, y);
-      } else {
-        yesTopics.forEach(function(topic){
-          var clean = topic.replace(/&amp;/g, '&');
-          var lines = doc.splitTextToSize('• ' + clean, pageWidth - margin * 2);
-          if(y + lines.length * 6 > 280){
-            doc.addPage();
-            y = 24;
-          }
-          doc.text(lines, margin, y);
-          y += lines.length * 6 + 4;
-        });
+      try {
+        var doc = buildBFCMResultsPDF(pct, yesTopics);
+        doc.save('CertainlyCX-BFCM-Results.pdf');
+      } catch(err){
+        console.error(err);
+        alert('Something went wrong generating your results. Please try again.');
       }
-
-      doc.save('BFCM-Results.pdf');
     }
   </script>
 
