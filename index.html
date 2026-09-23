@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Ten things to get right before your busiest week of the year — from CertainlyCX.">
 <meta property="og:title" content="BFCM Self-Check | CertainlyCX">
-<meta property="og:description" content="11 quick questions every CX and Ops leader should be able to answer before Black Friday hits.">
+<meta property="og:description" content="11 quick questions every CX / Ops leader should be able to answer before Black Friday hits.">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="BFCM Self-Check | CertainlyCX">
@@ -968,16 +968,17 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var n,r,i,a,
       var itemLineH = 24;
       var itemCount = Math.max(items.length, 1);
       var itemsH = itemCount * itemLineH;
+      var gapBeforeCTA = 20;
 
       var heroH = 150;
-      var totalY = heroH + 52 + 18 + 30 + itemsH + 56;
-      totalY += 16 + 12 + subLines.length * 24 + 10 + descLines.length * 15 + 30;
+      var totalY = heroH + 100 + itemsH + gapBeforeCTA;
+      totalY += 12 + 19 + (subLines.length - 1) * 24 + 10 + 11 + (descLines.length - 1) * 15 + 30;
       var cardH = 172;
       totalY += cardH + 46;
       var contactH = 128;
       totalY += contactH + 40;
 
-      var pageH = Math.max(totalY, 760);
+      var pageH = Math.max(totalY, 700);
 
       // ---- Pass 2: real doc at the exact size we need ----
       var doc = new jsPDFLib({ unit: 'pt', format: [pageWFixed, pageH] });
@@ -1028,6 +1029,7 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var n,r,i,a,
 
       if (items.length === 0) {
         doc.text('No areas marked ready yet.', margin, cy);
+        cy += itemLineH;
       } else {
         items.forEach(function(item){
           doc.setTextColor.apply(doc, coral);
@@ -1039,7 +1041,7 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var n,r,i,a,
       }
 
       // ===== CTA =====
-      cy = heroH + 52 + 18 + 30 + itemsH + 56;
+      cy += gapBeforeCTA;
 
       doc.setFont('helvetica', 'bold');
       doc.setFontSize(11);
@@ -1068,7 +1070,8 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var n,r,i,a,
       doc.roundedRect(margin, cardTop, pageW - margin * 2, cardH, 8, 8, 'FD');
 
       var fieldY = cardTop + 28;
-      ['NAME', 'EMAIL', 'COMPANY'].forEach(function(label){
+      var fieldNames = ['fullName', 'email', 'company'];
+      ['NAME', 'EMAIL', 'COMPANY'].forEach(function(label, i){
         doc.setFont('helvetica', 'bold');
         doc.setFontSize(9);
         doc.setTextColor.apply(doc, navy);
@@ -1076,6 +1079,20 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var n,r,i,a,
         doc.setDrawColor.apply(doc, lightGray);
         doc.setLineWidth(0.8);
         doc.line(margin + 22, fieldY + 12, pageW - margin - 22, fieldY + 12);
+
+        // Real fillable form field, invisibly overlaid on the drawn line above
+        if (doc.AcroFormTextField) {
+          var tf = new doc.AcroFormTextField();
+          tf.fieldName = fieldNames[i];
+          tf.x = margin + 22;
+          tf.y = fieldY - 4;
+          tf.width = (pageW - margin - 22) - (margin + 22);
+          tf.height = 18;
+          tf.fontSize = 11;
+          tf.color = 'rgb(26,27,34)';
+          doc.addField(tf);
+        }
+
         fieldY += 34;
       });
 
@@ -1112,17 +1129,21 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var n,r,i,a,
       doc.setFont('helvetica', 'bold');
       doc.setFontSize(18);
       var certainlyW = doc.getTextWidth('Certainly');
+      var cxW = doc.getTextWidth('CX');
       doc.setTextColor.apply(doc, white);
       doc.text('Certainly', margin, ly);
       doc.setTextColor.apply(doc, coralTint);
       doc.text('CX', margin + certainlyW, ly);
-      doc.link(margin, ly - 16, certainlyW + doc.getTextWidth('CX'), 22, { url: 'https://certainlycx.com' });
 
+      var logoTop = ly - 16;
       ly += 16;
       doc.setFont('helvetica', 'normal');
       doc.setFontSize(10);
       doc.setTextColor.apply(doc, lightGray);
       doc.text('Boutique Outsourcing', margin, ly);
+
+      // Single clickable area covering both the logo and the tagline beneath it
+      doc.link(margin, logoTop, Math.max(certainlyW + cxW, doc.getTextWidth('Boutique Outsourcing')), (ly - logoTop) + 6, { url: 'https://certainlycx.com' });
 
       return doc;
     }
